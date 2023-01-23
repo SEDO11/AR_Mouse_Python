@@ -2,7 +2,6 @@
 
 import cv2
 import numpy as np
-import HandTracking as htm
 from time import *
 import autopy
 
@@ -13,13 +12,10 @@ cap = cv2.VideoCapture(0)
 cap.set(3, wCam) # 창 가로 길이
 cap.set(4, hCam) # 창 세로 길이
 pTime = 0
-detector = htm.hand
 
 while True:
     # 1. find hand landmarks
     success, img = cap.read()
-    img = detector.findHands(img)
-    lmlist, bbox = detector.findPosition(img)
     
     # 2. get the tip of the index and middle fingers
     
