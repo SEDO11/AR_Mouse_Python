@@ -14,6 +14,10 @@
 
 [HandTrackingModule](https://pypi.org/project/HandTrackingModule)
 
+[HandTrackingModule참조코드](https://github.com/ravigithub19/ai-virtual-mouse)
+
 [autopy](https://pypi.org/project/autopy/)
+
+[내 웹캠 지원 해상도 확인 사이트](https://webrtchacks.github.io/WebRTC-Camera-Resolution/)
 
 <p>autopy 가 python 3.8까지만 지원 하므로 3.8.10을 이용해야 함</p>
