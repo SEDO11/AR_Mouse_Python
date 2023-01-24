@@ -6,6 +6,8 @@
 
 [2. 버추얼 마우스 영상 주소](https://www.youtube.com/watch?v=8tng9RsbXoU&ab_channel=Chronics)
 
+[참조코드](https://github.com/ravigithub19/ai-virtual-mouse)
+
 ### 필수 설치 라이브러리, 오류 날 수 있으니 순서대로 설치하는 것을 추천
 
 [파이썬 3.8.10](https://www.python.org/downloads/release/python-3810/)
@@ -13,8 +15,6 @@
 [mediapipe](https://pypi.org/project/mediapipe/)
 
 [HandTrackingModule](https://pypi.org/project/HandTrackingModule)
-
-[HandTrackingModule참조코드](https://github.com/ravigithub19/ai-virtual-mouse)
 
 [autopy](https://pypi.org/project/autopy/)
 

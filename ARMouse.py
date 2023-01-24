@@ -8,7 +8,9 @@ import autopy
 
 # 변수
 wCam, hCam = 640, 480 # 창 가로, 세로 길이 변수
-frameR = 100 # Frame Reduction
+frameW = 100 # Frame Reduction
+frameH = 50
+minusFrame = frameH + 100
 
 cap = cv2.VideoCapture(0)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, wCam) # 창 가로 길이
@@ -34,28 +36,30 @@ while True:
     
         # 3. check which fingers are up
         fingers = detector.fingersUp()
-        print(fingers)
+        # print(fingers)
         
-        cv2.rectangle(img, (frameR, frameR), (wCam-frameR, hCam-frameR), (255, 0, 255), 2)
+        cv2.rectangle(img, (frameW, frameH), (wCam-frameW, hCam-minusFrame), (255, 0, 255), 2)
         
         # 4. only index finger : moving mode
         if fingers[1]==1 and fingers[2]==0: # 검지만 올릴 경우
             
             # 5. covert coordicates
-            x3 = np.interp(x1, (0, wCam), (0, wScr))
-            y3 = np.interp(y1, (0, hCam), (0, hScr))
+            x3 = np.interp(x1, (frameW, wCam-frameW), (0, wScr))
+            y3 = np.interp(y1, (frameH, hCam-minusFrame), (0, hScr))
             
             # 6. smooth values
             
             # 7. move mouse
             try:
-                autopy.mouse.move(wScr-x3, y3)
+                autopy.mouse.move(wScr-x3, y3) # 가로로 움직일 때 좌우 반전을 주기위해 x3대신 wScr-x3을 사용
                 cv2.circle(img, (x1, y1), 10, (255, 0, 255), cv2.FILLED)
             except:
                 pass
             
         # 8. both index and middle fingers are up : clicking mode
-        
+        if fingers[1] == 1 and fingers[2] == 1:
+            length, img, _ = detector.findDistance(8, 12, img)
+            print(length)
         # 9. find distance between fingers
         
         # 10. click mouse if distance short
