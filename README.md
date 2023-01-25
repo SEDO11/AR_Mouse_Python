@@ -6,6 +6,8 @@
 
 [2. 버추얼 마우스 영상 주소](https://www.youtube.com/watch?v=8tng9RsbXoU&ab_channel=Chronics)
 
+[3. 잘만든 버추얼 마우스 주소](https://youtu.be/ufm6tfgo-OA)
+
 [참조코드](https://github.com/ravigithub19/ai-virtual-mouse)
 
 ### 필수 설치 라이브러리, 오류 날 수 있으니 순서대로 설치하는 것을 추천

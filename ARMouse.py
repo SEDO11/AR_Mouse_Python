@@ -3,7 +3,7 @@
 import cv2
 import numpy as np
 import HandTrakingModule as htm
-from time import *
+import time
 import autopy
 
 # 변수
@@ -11,6 +11,12 @@ wCam, hCam = 640, 480 # 창 가로, 세로 길이 변수
 frameW = 100 # Frame Reduction
 frameH = 50
 minusFrame = frameH + 100
+
+# 마우스 감도
+smoothening = 5
+plocX, plocY = 0, 0
+clocX, clocY = 0, 0
+
 
 cap = cv2.VideoCapture(0)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, wCam) # 창 가로 길이
@@ -41,31 +47,56 @@ while True:
         cv2.rectangle(img, (frameW, frameH), (wCam-frameW, hCam-minusFrame), (255, 0, 255), 2)
         
         # 4. only index finger : moving mode
-        if fingers[1]==1 and fingers[2]==0: # 검지만 올릴 경우
+        if fingers[1]==1 and fingers[2]==0 and fingers[0]==0: # 검지만 올릴 경우
             
             # 5. covert coordicates
             x3 = np.interp(x1, (frameW, wCam-frameW), (0, wScr))
             y3 = np.interp(y1, (frameH, hCam-minusFrame), (0, hScr))
             
-            # 6. smooth values
+            # 6. smoothen values, 마우스 포인터가 흔들리는걸 방지
+            clocX = plocX + (x3 - plocX) / smoothening
+            clocY = plocY + (y3 - plocY) / smoothening
             
             # 7. move mouse
             try:
-                autopy.mouse.move(wScr-x3, y3) # 가로로 움직일 때 좌우 반전을 주기위해 x3대신 wScr-x3을 사용
-                cv2.circle(img, (x1, y1), 10, (255, 0, 255), cv2.FILLED)
+                autopy.mouse.move(wScr-clocX, clocY) # 가로로 움직일 때 좌우 반전을 주기위해 x3대신 wScr-x3을 사용
+                cv2.circle(img, (x1, y1), 15, (255, 0, 255), cv2.FILLED)
+                plocX, plocY = clocX, clocY
             except:
                 pass
             
         # 8. both index and middle fingers are up : clicking mode
         if fingers[1] == 1 and fingers[2] == 1:
-            length, img, _ = detector.findDistance(8, 12, img)
-            print(length)
-        # 9. find distance between fingers
+            # 9. find distance between fingers
+            length, img, lineInfo = detector.findDistance(8, 12, img)
+            # print(length)
+            
+            # 10. click mouse if distance short
+            if length < 35:
+                cv2.circle(img, (lineInfo[-2], lineInfo[-1]), 15, (0, 255, 0), cv2.FILLED)
+                autopy.mouse.click()
+                time.sleep(0.005)
         
-        # 10. click mouse if distance short
+        # 드래그
+        if fingers[0] == 1 and fingers[1] == 1:
+            length, img, lineInfo = detector.findDistance(4, 8, img)
+            # print(length)
+            
+            if length < 100: # 엄지와 검지를 모을때 누른상태
+                cv2.circle(img, (lineInfo[-2], lineInfo[-1]), 15, (0, 255, 0), cv2.FILLED)
+                autopy.mouse.toggle(down=True)
+                time.sleep(0.001)
+                
+            if length > 140: # 엄지와 검지를 벌릴때 땐 상태
+                cv2.circle(img, (lineInfo[-2], lineInfo[-1]), 15, (255, 0, 0), cv2.FILLED)
+                autopy.mouse.toggle(down=False)
+                time.sleep(0.001)
+            
+            # if length > 120:
+        
     
     # 11. frame rate
-    fps.get_fps(img, blue=100, green=0, red=0)
+    fps.get_fps(img, blue=200, green=0, red=0)
     
     # 12. display
     if not success: # 카메라가 없으면 종료
