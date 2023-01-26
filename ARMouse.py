@@ -65,6 +65,7 @@ while True:
             except:
                 pass
             
+
         # 8. both index and middle fingers are up : clicking mode
         if fingers[1] == 1 and fingers[2] == 1:
             # 9. find distance between fingers
@@ -78,23 +79,35 @@ while True:
                 time.sleep(0.005)
         
         # 드래그
-        if fingers[0] == 1 and fingers[1] == 1:
-            length, img, lineInfo = detector.findDistance(4, 8, img)
+        # if fingers[0] == 1 and fingers[1] == 1:
+        #     length, img, lineInfo = detector.findDistance(4, 8, img)
+        #     # print(length)
+            
+        #     if length < 100: # 엄지와 검지를 모을때 누른상태
+        #         cv2.circle(img, (lineInfo[-2], lineInfo[-1]), 15, (0, 255, 0), cv2.FILLED)
+        #         autopy.mouse.toggle(down=True)
+        #         time.sleep(0.005)
+                
+        #     if length > 140: # 엄지와 검지를 벌릴때 땐 상태
+        #         cv2.circle(img, (lineInfo[-2], lineInfo[-1]), 15, (255, 0, 0), cv2.FILLED)
+        #         autopy.mouse.toggle(down=False)
+        #         time.sleep(0.005)
+        
+        # 우클릭
+        if fingers[1]==1 and fingers[4]==1:
+            length, img, lineInfo = detector.findDistance(8, 20, img)
             # print(length)
             
-            if length < 100: # 엄지와 검지를 모을때 누른상태
+            if length < 40: # 엄지와 검지를 모을때 누른상태
                 cv2.circle(img, (lineInfo[-2], lineInfo[-1]), 15, (0, 255, 0), cv2.FILLED)
-                autopy.mouse.toggle(down=True)
+                autopy.mouse.toggle(down=True, button=autopy.mouse.Button.RIGHT)
                 time.sleep(0.001)
                 
-            if length > 140: # 엄지와 검지를 벌릴때 땐 상태
+            if length > 100: # 엄지와 검지를 벌릴때 땐 상태
                 cv2.circle(img, (lineInfo[-2], lineInfo[-1]), 15, (255, 0, 0), cv2.FILLED)
-                autopy.mouse.toggle(down=False)
-                time.sleep(0.001)
-            
-            # if length > 120:
-        
-    
+                autopy.mouse.toggle(down=False, button=autopy.mouse.Button.RIGHT)
+                time.sleep(0.005)
+
     # 11. frame rate
     fps.get_fps(img, blue=200, green=0, red=0)
     
