@@ -6,7 +6,6 @@
 
 [2. 버추얼 마우스 영상 주소](https://www.youtube.com/watch?v=8tng9RsbXoU&ab_channel=Chronics)
 
-
 ### 필수 설치 라이브러리, 오류 날 수 있으니 순서대로 설치하는 것을 추천
 
 [파이썬 3.8.10](https://www.python.org/downloads/release/python-3810/)
@@ -21,7 +20,6 @@
 
 <p>autopy 가 python 3.8까지만 지원 하므로 3.8.10을 이용해야 함</p>
 
-
 ### 참조(Reference)
 
 [참조한 코드](https://github.com/ravigithub19/ai-virtual-mouse)
@@ -30,10 +28,7 @@
 
 [autopy 참조](https://www.autopy.org/documentation/api-reference/mouse.html)
 
-
-
 ### 릴리즈노트(Release notes)
-
 
 **23.01.26**
 
@@ -41,3 +36,6 @@ exe 파일을 만들떄 해당 오류가 뜨는 걸 확인되어 확인중, 검�
 
 ImportError('ERROR: recursion is detected during loading of "cv2" binary extensions. Check OpenCV installation.')
 ImportError: ERROR: recursion is detected during loading of "cv2" binary extensions. Check OpenCV installation.
+
+
+[해결책링크1](https://discuss.python.org/t/error-importerror-error-recursion-is-detected-during-loading-of-cv2-binary-extensions-check-opencv-installation-with-pyinstaller/17554/3)
