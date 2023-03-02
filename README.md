@@ -6,15 +6,13 @@
 
 [2. 버추얼 마우스 영상 주소](https://www.youtube.com/watch?v=8tng9RsbXoU&ab_channel=Chronics)
 
-`<br>`
+<br>
 
 ### 필수 설치 라이브러리, 오류 날 수 있으니 순서대로 설치하는 것을 추천
 
 [파이썬 3.8.10](https://www.python.org/downloads/release/python-3810/)
 
 [mediapipe](https://pypi.org/project/mediapipe/)
-
-[HandTrackingModule](https://pypi.org/project/HandTrackingModule)
 
 [autopy](https://pypi.org/project/autopy/)
 
@@ -30,7 +28,7 @@
 
 [autopy 참조](https://www.autopy.org/documentation/api-reference/mouse.html)
 
-`<br>`
+<br>
 
 ### 릴리즈노트(Release notes)
 
@@ -43,7 +41,13 @@ ImportError: ERROR: recursion is detected during loading of "cv2" binary extensi
 
 [해결책링크1](https://discuss.python.org/t/error-importerror-error-recursion-is-detected-during-loading-of-cv2-binary-extensions-check-opencv-installation-with-pyinstaller/17554/3)
 
-`<br>`
+<br>
+
+**23.03.02**
+
+잘 못된 정보 수정
+
+<br>
 
 ### 유튜브 영상 링크
 
