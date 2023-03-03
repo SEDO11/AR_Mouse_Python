@@ -46,7 +46,7 @@ while True:
         
         cv2.rectangle(img, (frameW, frameH), (wCam-frameW, hCam-minusFrame), (255, 0, 255), 2)
         
-        # 4. only index finger : moving mode
+        # 4. only index finger : moving mode, 마우스 포인터 움직임
         if fingers[1]==1 and fingers[2]==0 and fingers[0]==0: # 검지만 올릴 경우
             
             # 5. covert coordicates
@@ -66,7 +66,7 @@ while True:
                 pass
             
 
-        # 8. both index and middle fingers are up : clicking mode
+        # 8. both index and middle fingers are up : clicking mode, 마우스 좌클릭
         if fingers[1] == 1 and fingers[2] == 1:
             # 9. find distance between fingers
             length, img, lineInfo = detector.findDistance(8, 12, img)
@@ -77,21 +77,6 @@ while True:
                 cv2.circle(img, (lineInfo[-2], lineInfo[-1]), 15, (0, 255, 0), cv2.FILLED)
                 autopy.mouse.click()
                 time.sleep(0.005)
-        
-        # 드래그
-        # if fingers[0] == 1 and fingers[1] == 1:
-        #     length, img, lineInfo = detector.findDistance(4, 8, img)
-        #     # print(length)
-            
-        #     if length < 100: # 엄지와 검지를 모을때 누른상태
-        #         cv2.circle(img, (lineInfo[-2], lineInfo[-1]), 15, (0, 255, 0), cv2.FILLED)
-        #         autopy.mouse.toggle(down=True)
-        #         time.sleep(0.005)
-                
-        #     if length > 140: # 엄지와 검지를 벌릴때 땐 상태
-        #         cv2.circle(img, (lineInfo[-2], lineInfo[-1]), 15, (255, 0, 0), cv2.FILLED)
-        #         autopy.mouse.toggle(down=False)
-        #         time.sleep(0.005)
         
         # 우클릭
         if fingers[1]==1 and fingers[4]==1:
