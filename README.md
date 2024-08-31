@@ -14,7 +14,9 @@
 
 [mediapipe](https://pypi.org/project/mediapipe/)
 
-[autopy](https://pypi.org/project/autopy/)
+[autopy - py 3.8 이하의 버전만 가능](https://pypi.org/project/autopy/)
+
+[pyautogui - py 3 이상 3.11 이하 버전 가능](https://pypi.org/project/PyAutoGUI/)
 
 [내 웹캠 지원 해상도 확인 사이트](https://webrtchacks.github.io/WebRTC-Camera-Resolution/)
 
