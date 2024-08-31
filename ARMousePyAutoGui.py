@@ -1,5 +1,5 @@
 # pyautogui 라이브러리를 활용한 코드
-# pyauto에 비해서 기능은 많은데 마우스 이동하는 게 딜레이가 심함
+# autopy 에 비해서 기능은 많은데 마우스 이동하는 게 딜레이가 심함
 
 import cv2  # OpenCV 라이브러리
 import numpy as np  # Numpy 라이브러리
